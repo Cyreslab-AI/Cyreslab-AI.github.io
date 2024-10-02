@@ -27,6 +27,9 @@
             z-index: 2;
             text-align: center;
         }
+        .content {
+            max-width: 400px;
+        }
         .logo {
             font-size: 3.5rem;
             font-weight: 600;
@@ -37,7 +40,6 @@
             font-size: 1.1rem;
             font-weight: 300;
             margin-bottom: 2rem;
-            max-width: 400px;
             line-height: 1.5;
             opacity: 0.9;
         }
@@ -87,7 +89,8 @@
         @media (max-width: 768px) {
             .container {
                 width: 100%;
-                padding: 0 10%;
+                padding: 20px 10% 60px; /* Added bottom padding to account for copyright */
+                justify-content: center; /* Center content vertically */
             }
             .logo {
                 font-size: 2.5rem;
@@ -99,11 +102,15 @@
                 font-size: 0.8rem;
             }
             .copyright {
-                position: relative;
-                margin-top: 2rem;
+                position: fixed;
+                bottom: 20px;
+                left: 0;
+                width: 100%;
+                text-align: center;
             }
             #codeAnimation {
-                display: none;
+                width: 100%;
+                left: 0;
             }
         }
     </style>
@@ -112,9 +119,11 @@
     <div class="background"></div>
     <canvas id="codeAnimation"></canvas>
     <div class="container">
-        <div class="logo" id="company-name"></div>
-        <div class="tagline">Cyber Security and Artificial Intelligence Lab</div>
-        <div class="contact">Contact: <a href="mailto:contact@cyres.ai">contact@cyres.ai</a></div>
+        <div class="content">
+            <div class="logo" id="company-name"></div>
+            <div class="tagline">Cyber Security and Artificial Intelligence Lab</div>
+            <div class="contact">Contact: <a href="mailto:contact@cyres.ai">contact@cyres.ai</a></div>
+        </div>
         <div class="copyright">© <span id="year"></span> cyres_lab. All rights reserved.</div>
     </div>
     <script>
@@ -138,7 +147,7 @@
         const ctx = canvas.getContext('2d');
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth / 2;
+            canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
