@@ -3,55 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyresLab - Cyber Security & Artificial Intelligence</title>
+    <title>cyres_lab | Cyber Security and AI Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+            background-color: #0a0e17;
+            color: #b0b0b0;
+            overflow: hidden;
         }
         .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50%;
+            padding: 0 5%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 20px;
         }
-        .company-name {
-            font-size: 36px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
         }
         .tagline {
-            font-size: 24px;
-            color: #34495e;
-            max-width: 600px;
-            line-height: 1.4;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 400px;
+            line-height: 1.5;
+            opacity: 0.9;
         }
-        .contact-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: #ffffff;
-            background-color: #3498db;
-            border: none;
-            border-radius: 5px;
+        .contact {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        a {
+            color: #b0b0b0;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: opacity 0.3s ease;
         }
-        .contact-button:hover {
-            background-color: #2980b9;
+        a:hover {
+            opacity: 0.8;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a2634 50%, #2a3e5c 100%);
+            animation: gradientAnimation 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        @keyframes gradientAnimation {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        #codeAnimation {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
+    <canvas id="codeAnimation"></canvas>
     <div class="container">
-        <div class="company-name">CyresLab</div>
-        <div class="tagline">Cyber Security & Artificial Intelligence</div>
-        <a href="mailto:contact@cyres.ai" class="contact-button">Contact Us</a>
+        <div class="logo" id="company-name"></div>
+        <div class="tagline">Cyber Security and Artificial Intelligence Lab</div>
+        <div class="contact">Contact: <a href="mailto:contact@cyres.ai">contact@cyres.ai</a></div>
     </div>
+    <script>
+        const companyName = "cyres_lab";
+        const nameElement = document.getElementById('company-name');
+        let i = 0;
+        function typeWriter() {
+            if (i < companyName.length) {
+                nameElement.innerHTML += companyName.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        typeWriter();
+
+        // Code animation
+        const canvas = document.getElementById('codeAnimation');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth / 2;
+        canvas.height = window.innerHeight;
+
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>?/*-+!&^%$#@';
+        const fontSize = 12;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawCodeAnimation() {
+            ctx.fillStyle = 'rgba(10, 14, 23, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawCodeAnimation, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth / 2;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
