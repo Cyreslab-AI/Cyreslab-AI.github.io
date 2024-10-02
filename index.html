@@ -45,6 +45,12 @@
             font-size: 0.9rem;
             font-weight: 400;
         }
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
         a {
             color: #b0b0b0;
             text-decoration: none;
@@ -78,6 +84,28 @@
             z-index: 1;
             opacity: 0.1;
         }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0 10%;
+            }
+            .logo {
+                font-size: 2.5rem;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+            .contact {
+                font-size: 0.8rem;
+            }
+            .copyright {
+                position: relative;
+                margin-top: 2rem;
+            }
+            #codeAnimation {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -87,6 +115,7 @@
         <div class="logo" id="company-name"></div>
         <div class="tagline">Cyber Security and Artificial Intelligence Lab</div>
         <div class="contact">Contact: <a href="mailto:contact@cyres.ai">contact@cyres.ai</a></div>
+        <div class="copyright">© <span id="year"></span> cyres_lab. All rights reserved.</div>
     </div>
     <script>
         const companyName = "cyres_lab";
@@ -101,16 +130,23 @@
         }
         typeWriter();
 
+        // Set current year for copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         // Code animation
         const canvas = document.getElementById('codeAnimation');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth / 2;
-        canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth / 2;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
 
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>?/*-+!&^%$#@';
         const fontSize = 12;
-        const columns = canvas.width / fontSize;
+        let columns = canvas.width / fontSize;
 
         const drops = [];
         for (let i = 0; i < columns; i++) {
@@ -135,11 +171,15 @@
             }
         }
 
-        setInterval(drawCodeAnimation, 50);
+        let animationInterval = setInterval(drawCodeAnimation, 50);
 
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth / 2;
-            canvas.height = window.innerHeight;
+            resizeCanvas();
+            columns = canvas.width / fontSize;
+            drops.length = columns;
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
         });
     </script>
 </body>
