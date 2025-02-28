@@ -140,7 +140,7 @@ a:hover {
 }
 
 .logo-symbol svg {
-    filter: drop-shadow(0 0 12px rgba(0, 179, 230, 0.4));
+    filter: drop-shadow(0 0 6px rgba(0, 179, 230, 0.25));
     transform-origin: center;
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -238,28 +238,28 @@ a:hover {
 }
 
 
-/* Typewriter Effect */
+/* Mirror Phrase */
 .typewriter {
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.4rem;
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-    white-space: nowrap;
     margin: 0 auto 3rem;
-    letter-spacing: 0.15em;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    max-width: fit-content;
     color: var(--primary-color);
+    position: relative;
+    padding-right: 0.1em;
+    display: inline-block;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+.typewriter::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+    top: 0;
+    animation: blink-caret 0.75s step-end infinite;
 }
 
 @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--primary-color) }
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
 }
 
 /* Terminal */
@@ -590,8 +590,21 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .hero h2 {
-        font-size: 2.2rem;
+    .logo-text h1 {
+        font-size: 2rem;
+    }
+    
+    .logo-symbol svg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .typewriter {
+        font-size: 1.2rem;
+    }
+    
+    .terminal {
+        width: 90%;
     }
     
     .footer-content {
@@ -606,18 +619,78 @@ footer {
 
 @media (max-width: 576px) {
     .hero {
-        padding: 8rem 0 4rem;
+        padding: 6rem 0 4rem;
     }
     
-    .glitch {
-        font-size: 2rem;
+    .logo-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo-symbol svg {
+        width: 70px;
+        height: 70px;
+        filter: drop-shadow(0 0 4px rgba(0, 179, 230, 0.2));
     }
     
     .typewriter {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        max-width: 90%;
+        line-height: 1.5;
+    }
+    
+    .deception-teaser {
+        width: 100%;
     }
     
     .terminal {
         max-width: 100%;
+        font-size: 0.8rem;
+    }
+    
+    .terminal-body {
+        padding: 0.8rem;
+    }
+    
+    .button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .coordinates::after {
+        display: none;
+    }
+    
+    .coordinates {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-symbol svg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .typewriter {
+        font-size: 0.8rem;
+    }
+    
+    .terminal-header {
+        padding: 0.3rem;
+    }
+    
+    .terminal-button {
+        width: 8px;
+        height: 8px;
+        margin-right: 6px;
+    }
+    
+    .terminal-body {
+        padding: 0.6rem;
+        font-size: 0.7rem;
     }
 }
