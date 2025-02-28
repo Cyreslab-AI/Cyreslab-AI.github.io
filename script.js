@@ -1,110 +1,62 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Header scroll effect
-    const header = document.querySelector('header');
-    const scrollThreshold = 50;
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > scrollThreshold) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - header.offsetHeight,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
     // Terminal animation
     animateTerminal();
     
-    // Enhance glitch effect on scroll
-    window.addEventListener('scroll', function() {
-        const glitchElement = document.querySelector('.glitch');
-        if (glitchElement) {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            
-            // Intensify glitch effect based on scroll position
-            if (scrollPosition < windowHeight) {
-                const intensity = scrollPosition / (windowHeight / 2);
-                glitchElement.style.setProperty('--glitch-intensity', Math.min(intensity, 1));
-            }
-        }
-    });
-    
-    // Research card hover effects
-    const researchCards = document.querySelectorAll('.research-card');
-    
-    researchCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            const hexIcon = this.querySelector('.hex-icon');
-            if (hexIcon) {
-                hexIcon.style.transform = 'scale(1.1) rotate(30deg)';
-                setTimeout(() => {
-                    hexIcon.style.transform = 'scale(1) rotate(0deg)';
-                }, 300);
-            }
-            
-            if (this.classList.contains('deception-card')) {
-                this.querySelector('.teaser-overlay').style.opacity = '1';
-                
-                // Add a glitch effect to the deception card text
-                const cardTitle = this.querySelector('h3');
-                cardTitle.classList.add('text-glitch');
-                setTimeout(() => {
-                    cardTitle.classList.remove('text-glitch');
-                }, 1000);
+    // Logo animation enhancements
+    const logoSymbol = document.querySelector('.logo-symbol');
+    if (logoSymbol) {
+        // Add subtle rotation on hover
+        logoSymbol.addEventListener('mouseenter', function() {
+            const svgElement = this.querySelector('svg');
+            if (svgElement) {
+                svgElement.style.transform = 'scale(1.1) rotate(5deg)';
             }
         });
         
-        card.addEventListener('mouseleave', function() {
-            if (this.classList.contains('deception-card')) {
-                this.querySelector('.teaser-overlay').style.opacity = '0.8';
+        logoSymbol.addEventListener('mouseleave', function() {
+            const svgElement = this.querySelector('svg');
+            if (svgElement) {
+                svgElement.style.transform = '';
             }
         });
-    });
-    
-    // Random "system alert" effect for deception card
-    const deceptionCard = document.querySelector('.deception-card');
-    if (deceptionCard) {
-        setInterval(() => {
-            const alertChance = Math.random();
-            if (alertChance > 0.7) { // 30% chance of triggering
-                triggerSecurityAlert(deceptionCard);
-            }
-        }, 10000); // Check every 10 seconds
     }
     
-    // Add parallax effect to sections
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-            const scrollPosition = window.scrollY;
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition > sectionTop - window.innerHeight && 
-                scrollPosition < sectionTop + sectionHeight) {
-                const speed = section.getAttribute('data-parallax') || 0.2;
-                const yPos = (scrollPosition - sectionTop) * speed;
-                section.style.backgroundPositionY = yPos + 'px';
+    // Random security alerts
+    setInterval(() => {
+        const alertChance = Math.random();
+        if (alertChance > 0.85) { // 15% chance of triggering
+            triggerSecurityAlert();
+        }
+    }, 8000); // Check every 8 seconds
+    
+    // Add subtle movement to the page on mouse move
+    document.addEventListener('mousemove', function(e) {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+        
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        }
+    });
+    
+    // Button hover effect
+    const button = document.querySelector('.button');
+    if (button) {
+        button.addEventListener('mouseenter', function() {
+            const textElement = this.querySelector('.button-text');
+            if (textElement) {
+                const originalText = textElement.textContent;
+                const scrambledText = scrambleText(originalText);
+                
+                textElement.textContent = scrambledText;
+                
+                setTimeout(() => {
+                    textElement.textContent = originalText;
+                }, 300);
             }
         });
-    });
+    }
 });
 
 // Terminal animation function
@@ -147,7 +99,7 @@ function animateTerminal() {
 }
 
 // Security alert effect
-function triggerSecurityAlert(element) {
+function triggerSecurityAlert() {
     // Create alert overlay
     const alertOverlay = document.createElement('div');
     alertOverlay.classList.add('security-alert');
@@ -158,34 +110,40 @@ function triggerSecurityAlert(element) {
         </div>
     `;
     
-    element.appendChild(alertOverlay);
+    document.body.appendChild(alertOverlay);
     
     // Flash effect
     setTimeout(() => {
         alertOverlay.classList.add('flash');
         
         setTimeout(() => {
-            element.removeChild(alertOverlay);
+            document.body.removeChild(alertOverlay);
         }, 1000);
     }, 100);
+}
+
+// Text scramble function
+function scrambleText(text) {
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    let result = '';
+    
+    for (let i = 0; i < text.length; i++) {
+        if (Math.random() < 0.3) {
+            result += text[i];
+        } else {
+            result += chars[Math.floor(Math.random() * chars.length)];
+        }
+    }
+    
+    return result;
 }
 
 // Add CSS for the effects defined in JS
 document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
     style.textContent = `
-        header.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            background-color: rgba(10, 14, 23, 0.98);
-        }
-        
-        .deception-card .teaser-overlay {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .hex-icon {
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .hero-content {
+            transition: transform 0.2s ease-out;
         }
         
         .text-glitch {
@@ -203,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .security-alert {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -212,9 +170,10 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
+            z-index: 10000;
             opacity: 0;
             transition: opacity 0.2s ease;
+            pointer-events: none;
         }
         
         .security-alert.flash {
@@ -243,16 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #ff3e3e;
         }
         
-        .glitch {
-            --glitch-intensity: 0.5;
-        }
-        
-        .glitch::before {
-            animation-duration: calc(5s / var(--glitch-intensity, 1));
-        }
-        
-        .glitch::after {
-            animation-duration: calc(5s / var(--glitch-intensity, 1));
+        .logo-symbol svg {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
     `;
     document.head.appendChild(style);
