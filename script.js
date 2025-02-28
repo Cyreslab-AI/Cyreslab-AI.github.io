@@ -2,24 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Terminal animation
     animateTerminal();
     
-    // Logo animation enhancements
-    const logoSymbol = document.querySelector('.logo-symbol');
-    if (logoSymbol) {
-        // Add subtle rotation on hover
-        logoSymbol.addEventListener('mouseenter', function() {
-            const svgElement = this.querySelector('svg');
-            if (svgElement) {
-                svgElement.style.transform = 'scale(1.1) rotate(5deg)';
-            }
-        });
-        
-        logoSymbol.addEventListener('mouseleave', function() {
-            const svgElement = this.querySelector('svg');
-            if (svgElement) {
-                svgElement.style.transform = '';
-            }
-        });
-    }
+    // No logo animation as per request
     
     // Random security alerts
     setInterval(() => {

@@ -135,7 +135,6 @@ a:hover {
 
 .logo-symbol {
     color: var(--primary-color);
-    animation: pulse-subtle 4s infinite alternate;
     position: relative;
 }
 
@@ -145,9 +144,6 @@ a:hover {
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.logo-symbol:hover svg {
-    transform: scale(1.05) rotate(5deg);
-}
 
 .logo-symbol::after {
     content: '';
@@ -173,25 +169,14 @@ a:hover {
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 0;
-    text-shadow: 0 0 10px rgba(0, 179, 230, 0.2);
-}
-
-@keyframes pulse-subtle {
-    0% {
-        opacity: 0.9;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
+    color: var(--primary-color);
 }
 
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--secondary-color) 0%, #131c2a 100%);
     color: var(--text-color);
-    padding: 6rem 0;
+    padding: 4rem 0 12rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -501,6 +486,7 @@ a:hover {
 /* Contact Button in Stealth Mode */
 .stealth-contact {
     margin-top: 3rem;
+    margin-bottom: 5rem;
 }
 
 .button {
@@ -553,7 +539,7 @@ footer {
     color: var(--text-color);
     padding: 1.5rem 0;
     border-top: 1px solid rgba(0, 179, 230, 0.1);
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     z-index: 100;
@@ -619,7 +605,7 @@ footer {
 
 @media (max-width: 576px) {
     .hero {
-        padding: 6rem 0 4rem;
+        padding: 3rem 0 10rem;
     }
     
     .logo-text h1 {
@@ -640,15 +626,22 @@ footer {
     
     .deception-teaser {
         width: 100%;
+        margin: 0.5rem 0 1.5rem;
     }
     
     .terminal {
         max-width: 100%;
         font-size: 0.8rem;
+        margin-bottom: 1.5rem;
     }
     
     .terminal-body {
         padding: 0.8rem;
+    }
+    
+    .stealth-contact {
+        margin-top: 1.5rem;
+        margin-bottom: 4rem;
     }
     
     .button {
