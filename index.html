@@ -3,193 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cyreslab | Cyber Security and AI Lab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            background-color: #0a0e17;
-            color: #b0b0b0;
-            overflow: hidden;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 50%;
-            padding: 0 5%;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        .content {
-            max-width: 400px;
-        }
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-        .tagline {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            line-height: 1.5;
-            opacity: 0.9;
-        }
-        .contact {
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-        .copyright {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-        a {
-            color: #b0b0b0;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-        a:hover {
-            opacity: 0.8;
-        }
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background: linear-gradient(135deg, #0a0e17 0%, #1a2634 50%, #2a3e5c 100%);
-            animation: gradientAnimation 15s ease infinite;
-            background-size: 400% 400%;
-        }
-        @keyframes gradientAnimation {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        #codeAnimation {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.1;
-        }
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-                padding: 20px 10% 60px; /* Added bottom padding to account for copyright */
-                justify-content: center; /* Center content vertically */
-            }
-            .logo {
-                font-size: 2.5rem;
-            }
-            .tagline {
-                font-size: 1rem;
-            }
-            .contact {
-                font-size: 0.8rem;
-            }
-            .copyright {
-                position: fixed;
-                bottom: 20px;
-                left: 0;
-                width: 100%;
-                text-align: center;
-            }
-            #codeAnimation {
-                width: 100%;
-                left: 0;
-            }
-        }
-    </style>
+    <title>cyreslab.ai | Asymmetric Security Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background"></div>
-    <canvas id="codeAnimation"></canvas>
-    <div class="container">
-        <div class="content">
-            <div class="logo" id="company-name"></div>
-            <div class="tagline">Cyber Security and Artificial Intelligence Lab</div>
-            <div class="contact">Contact: <a href="mailto:contact@cyreslab.ai">contact@cyreslab.ai</a></div>
+    <div class="noise-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span class="terminal-prefix">></span>cyreslab<span class="highlight">.ai</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#research" data-text="Research">Research</a></li>
+                    <li><a href="#about" data-text="About">About</a></li>
+                    <li><a href="#contact" data-text="Contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="copyright">© <span id="year"></span> cyreslab. All rights reserved.</div>
-    </div>
-    <script>
-        const companyName = "cyreslab";
-        const nameElement = document.getElementById('company-name');
-        let i = 0;
-        function typeWriter() {
-            if (i < companyName.length) {
-                nameElement.innerHTML += companyName.charAt(i);
-                i++;
-                setTimeout(typeWriter, 150);
-            }
-        }
-        typeWriter();
+    </header>
 
-        // Set current year for copyright
-        document.getElementById('year').textContent = new Date().getFullYear();
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="glitch-container">
+                    <h2 class="glitch" data-text="Asymmetric Security Intelligence">Asymmetric Security Intelligence</h2>
+                </div>
+                <p class="typewriter">Where AI meets the shadows of cybersecurity</p>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="terminal-prompt">$</span> <span class="terminal-command">init cyreslab.ai</span></p>
+                        <p><span class="terminal-output">Initializing secure environment...</span></p>
+                        <p><span class="terminal-output">Deploying cognitive defense systems...</span></p>
+                        <p><span class="terminal-output">Ready.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Code animation
-        const canvas = document.getElementById('codeAnimation');
-        const ctx = canvas.getContext('2d');
+    <section id="research" class="research">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Vectors</h2>
+                <div class="section-header-line"></div>
+            </div>
+            <div class="research-areas">
+                <div class="research-card">
+                    <div class="research-icon">
+                        <div class="hex-icon">
+                            <svg viewBox="0 0 24 24" width="48" height="48"><path d="M12 1l8.217 14.108c.276.474.106 1.057-.373 1.334-.159.09-.33.133-.499.133h-14.69c-.552 0-1-.456-1-1.01 0-.169.043-.34.133-.5L12 1zm0 3.267L6.186 14.576h11.628L12 4.267z" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <h3>Adversarial Cognition</h3>
+                    <p>Neural networks that think like attackers. Evolving beyond signature-based detection to predict zero-day exploits before they emerge.</p>
+                    <div class="card-footer">
+                        <span class="tag">ML/RL</span>
+                        <span class="tag">Zero-day</span>
+                    </div>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">
+                        <div class="hex-icon">
+                            <svg viewBox="0 0 24 24" width="48" height="48"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h5v2H7v-2z" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <h3>Quantum-Resistant AI</h3>
+                    <p>Developing neural architectures immune to quantum decryption. Preparing for the post-quantum security landscape before it arrives.</p>
+                    <div class="card-footer">
+                        <span class="tag">Quantum</span>
+                        <span class="tag">Cryptography</span>
+                    </div>
+                </div>
+                <div class="research-card deception-card">
+                    <div class="research-icon">
+                        <div class="hex-icon pulse">
+                            <svg viewBox="0 0 24 24" width="48" height="48"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 3a3 3 0 0 1 3 3v1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h1v-1a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1z" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <h3>Cognitive Deception</h3>
+                    <p>The attacker sees what we want them to see. AI-generated honeypots that learn and adapt to intruders, turning their tools against them.</p>
+                    <div class="card-footer">
+                        <span class="tag">Classified</span>
+                    </div>
+                    <div class="teaser-overlay">
+                        <span>Restricted Access</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Protocol</h2>
+                <div class="section-header-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>We operate at the convergence of neural networks and security vulnerabilities. Not building walls, but creating intelligent systems that think like attackers and adapt faster than human defenders.</p>
+                    <p>Our researchers come from classified government programs, quantum computing labs, and offensive security backgrounds. We don't follow the cybersecurity roadmap—we rewrite it.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-value">0.03s</div>
+                        <div class="stat-label">Average threat response time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">99.7%</div>
+                        <div class="stat-label">Zero-day detection rate</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">2025</div>
+                        <div class="stat-label">Year of inception</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        resizeCanvas();
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transmission</h2>
+                <div class="section-header-line"></div>
+            </div>
+            <p>Secure channel open for research collaborations and partnership inquiries.</p>
+            <div class="contact-button">
+                <a href="mailto:access@cyreslab.ai" class="button">
+                    <span class="button-text">Establish Connection</span>
+                    <span class="button-icon">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>?/*-+!&^%$#@';
-        const fontSize = 12;
-        let columns = canvas.width / fontSize;
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2025 cyreslab.ai</p>
+                </div>
+                <div class="footer-right">
+                    <p class="coordinates">37.7749° N, 122.4194° W</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        const drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
-
-        function drawCodeAnimation() {
-            ctx.fillStyle = 'rgba(10, 14, 23, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#4CAF50';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        let animationInterval = setInterval(drawCodeAnimation, 50);
-
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            columns = canvas.width / fontSize;
-            drops.length = columns;
-            for (let i = 0; i < columns; i++) {
-                drops[i] = 1;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
